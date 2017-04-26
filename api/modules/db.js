@@ -1,15 +1,6 @@
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('user', 'user', '123456', {
-    host: 'localhost',
-    dialect: 'postgres',
-
-    pool: {
-        max: 5,
-        min: 0,
-        idle: 10000
-    },
-});
+var sequelize = new Sequelize(process.env.DATABASE_URL);
 sequelize
     .authenticate()
     .then(function(err) {

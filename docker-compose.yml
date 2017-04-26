@@ -1,0 +1,22 @@
+version: '2'
+services:
+  api:
+    container_name: api
+    build: ./api/
+    links:
+      - db
+    environment:
+      - DATABASE_URL=postgres://user:123456@db:5432/postgres
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/web
+    command: npm start
+  db:
+    container_name: db
+    ports:
+      - "5432:5432"
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456

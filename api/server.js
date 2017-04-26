@@ -17,13 +17,13 @@ app.use(session( {
     saveUninitialized : false,
     maxAge: null
 } ));
-app.use(express.static('./public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(cookieParser());
 app.engine('hbs', exphbs({
     defaultLayout: 'main.hbs',
-    partialsDir: './views/partials',
-    layoutsDir: './views/layouts'
+    partialsDir: __dirname + '/views/partials',
+    layoutsDir: __dirname + '/views/layouts'
 }));
 app.set('view engine', 'hbs');
 app.use(flash());
