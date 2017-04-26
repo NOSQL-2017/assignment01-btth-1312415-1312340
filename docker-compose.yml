@@ -1,8 +1,8 @@
 version: '2'
 services:
   api:
-    container_name: api
-    build: ./api/
+    container_name: app
+    build: ./app/
     links:
       - db
     environment:
@@ -10,8 +10,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./api:/web
-    command: npm start
+      - ./app:/web
+    command: bash -c "npm install && npm start"
   db:
     container_name: db
     ports:
