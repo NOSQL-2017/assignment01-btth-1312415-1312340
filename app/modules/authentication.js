@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-var serialize = function (req, res, next) {
+var authentication = function (req, res, next) {
     var session = req.session.user_id;
     if(session){
         User.findById(req.session.user_id).then(function (user) {
@@ -17,4 +17,4 @@ var serialize = function (req, res, next) {
     }
 };
 
-module.exports = serialize;
+module.exports = authentication;
