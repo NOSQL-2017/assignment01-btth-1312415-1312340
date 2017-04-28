@@ -4,6 +4,8 @@
 </div>
 <div>
     {{#each books}}
-        {{this.name}}
+        <div>
+            <a href="/book/{{this.id}}">{{this.name}}</a>
+        </div>
     {{/each}}
 </div>
