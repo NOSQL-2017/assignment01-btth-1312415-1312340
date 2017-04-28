@@ -4,6 +4,7 @@ const multipart = require('connect-multiparty');
 const fs = require('fs-extra');
 const multipartMiddleware = multipart();
 var path = require('path');
+var EPub = require("epub");
 
 const cloudinary = require('../modules/cloudinary');
 const Book = require('../models/Book');
@@ -34,22 +35,48 @@ router.post('/upload', Authentication, multipartMiddleware, function (req, res) 
     fs.copy(req.files.book.path, newfileURI, function (err) {
         if (err) return console.error(err);
         fs.removeSync(req.files.book.path);
-        var body = _.pick(req.body, ['name', 'price']);
-        var book = Book.build(body);
-        book.url = newfileURI;
-        book.save().then(function () {
-            req.flash('info', 'New book added');
-            res.redirect('/book');
-        }).catch(function (e) {
-            for (var i = 0; i < e.errors.length; i++) {
-                req.flash('info', e.errors[i].message);
-            }
+        var body = _.pick(req.body, [ 'price']);
 
-            res.redirect('/user/register');
-        })
+        var book = Book.build(body);
+        book.userId = req.user.id;
+        book.url = newfileURI;
+        var epub = new EPub(book.url,'./images/IMG_ID/IMG_FILENAME', './chapters/CHAPTER_ID/CHAPTER_FILENAME');
+        epub.on("end", function(){
+            book.name = epub.metadata.title;
+            book.save().then(function () {
+                req.flash('info', 'New book added');
+                res.redirect('/book');
+            }).catch(function (e) {
+                for (var i = 0; i < e.errors.length; i++) {
+                    req.flash('info', e.errors[i].message);
+                }
+
+                res.redirect('/user/register');
+            })
+        });
+        epub.parse();
+
     });
 
 
 });
-
+router.get('/:id',Authentication,function (req, res) {
+    Book.findById(req.params.id).then(function (book) {
+        console.log(book.user);
+        var epub = new EPub(book.url);
+        epub.on("end", function(){
+            var URI = '.' + book.url.slice(8, book.url.length);
+            res.render('book/show', {
+                page: "book",
+                book: book,
+                uri: URI,
+                epub: epub
+            });
+        });
+        epub.parse();
+    }).catch(function (err) {
+        req.flash('info', 'No book');
+        res.redirect('/book');
+    })
+});
 module.exports = router;

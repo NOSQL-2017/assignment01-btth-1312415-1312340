@@ -32,5 +32,5 @@ var Book = sequelize.define('book', {
     }
 });
 Book.belongsTo(User);
-Book.sync({force: true});
+ // Book.sync({force: true});
 module.exports = Book;

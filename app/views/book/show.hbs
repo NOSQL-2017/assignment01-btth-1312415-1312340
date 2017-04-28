@@ -1,0 +1,18 @@
+<div>
+    <h2>Title:{{epub.metadata.title}} </h2>
+    <h3>Author:{{epub.metadata.creator}}</h3>
+    <h3>Publisher:{{epub.metadata.publisher}}</h3>
+    Chapter number:{{chapterNumber.length}}<br>
+
+    <div id="main">
+        <div id="prev" onclick="Book.prevPage();" class="btn btn-warning">PREVIOUS</div>
+        <div id="area"></div>
+        <div id="next" onclick="Book.nextPage();" class="btn btn-success">NEXT</div>
+    </div>
+    <script src="/js/zip.min.js"></script>
+    <script src="/js/epub.js"></script>
+    <script>
+        var Book = ePub(".{{uri}}");
+        Book.renderTo("area");
+    </script>
+</div>
