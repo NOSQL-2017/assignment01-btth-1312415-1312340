@@ -13,6 +13,7 @@ var authentication = function (req, res, next) {
     }
     else{
         req.flash('info', 'need to login');
+        req.session.last_url = req.originalUrl;
         res.redirect('/user/login');
     }
 };
