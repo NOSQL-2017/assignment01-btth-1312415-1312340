@@ -6,7 +6,7 @@ services:
     links:
       - db
     environment:
-      - DATABASE_URL=postgres://user:123456@db:5432/postgres
+      - DATABASE_URL=postgres://user:123456@db:5432/user
     ports:
       - "3000:3000"
     volumes:

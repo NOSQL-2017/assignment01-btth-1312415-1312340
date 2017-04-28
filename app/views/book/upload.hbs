@@ -1,0 +1,29 @@
+<form class="form-horizontal col-xs-4 col-md-offset-4" method="post" enctype="multipart/form-data" >
+    <h2 class = "col-md-offset-5">UPLOAD</h2>
+    <div class="form-group">
+        <label for="inputName" class="control-label col-xs-2">Name</label>
+        <div class="col-xs-8">
+            <input name="name" type="text" class="form-control" id="inputName" placeholder="Your book's name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputPrice" class="control-label col-xs-2">Price</label>
+        <div class="col-xs-8">
+            <input name="price" type="number" min=0 class="form-control" id="inputPrice" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputBook" class="control-label col-xs-2">Book</label>
+        <div class="col-xs-8">
+            <input name="book" type="file" class="form-control" id="inputBook" accept=".epub" >
+            (only epub)
+        </div>
+    </div>
+    <input name="userId" type="hidden" class="form-control" id="userID" value="{{session.id}}" >
+    <div class="form-group">
+        <div class="col-xs-offset-4 col-xs-10">
+            <button type="submit" class="btn btn-success">Upload</button>
+            <a class="btn btn-success" href="/">Back</a>
+        </div>
+    </div>
+</form>

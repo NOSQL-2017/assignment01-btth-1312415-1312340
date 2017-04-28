@@ -19,16 +19,16 @@ Yêu cầu **GIT**
 * [ ] Sử dụng GIT theo Gitflow Workflow.
 
 Công nghệ sử dụng (tự động thêm nếu phần mình dùng không được liệt kê):
-* [ ] Nodejs
+* [x] Nodejs
 * [ ] Ruby on Rails
-* [ ] Postgresql
+* [x] Postgresql
 * [ ] Mongodb
 * [ ] Redis
 * [ ] Cassandra
 * [ ] Neo4j
 
 Yêu cầu **bắt buộc**
-* [ ] Triển khai ứng dụng sử dụng docker compose và Dockerfile
+* [x] Triển khai ứng dụng sử dụng docker compose và Dockerfile
 * [ ] Người dùng được phép đăng nhập để tiến hành mua sách
 * [ ] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
 * [ ] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm

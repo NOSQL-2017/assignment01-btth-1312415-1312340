@@ -12,7 +12,7 @@ var User = sequelize.define('user', {
             args: true,
             msg: 'Email address already in use!'
         },
-        validate:{
+        validate: {
             isEmail: {
                 args: true,
                 msg: 'Must be real email'
@@ -20,13 +20,13 @@ var User = sequelize.define('user', {
         }
 
     },
-    name:{
+    name: {
         type: SQ.STRING,
         allowNull: {
             args: false,
             msg: 'Must have a name '
         },
-        validate:{
+        validate: {
             len: {
                 args: [1],
                 msg: 'Must have a name'
@@ -34,12 +34,16 @@ var User = sequelize.define('user', {
         }
 
     },
-    avatar:{
+    avatar: {
         type: SQ.STRING,
         allowNull: {
             args: false,
             msg: 'Must have an avatar'
         }
+    },
+    admin: {
+        type: SQ.BOOLEAN,
+        defaultValue: false
     },
     salt: {
         type: SQ.STRING,
@@ -47,14 +51,14 @@ var User = sequelize.define('user', {
             args: false
         }
     },
-    hash:{
+    hash: {
         type: SQ.STRING,
         allowNull: {
             args: false
         }
     }
 });
-// User.sync({ force: true }).then(function () {
+// User.sync({force: true}).then(function () {
 //
 // });
 
