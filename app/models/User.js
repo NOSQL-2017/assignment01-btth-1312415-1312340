@@ -1,6 +1,5 @@
 const sequelize = require('../modules/db');
 const SQ = require('sequelize');
-
 var User = sequelize.define('user', {
     email: {
         type: SQ.STRING,
@@ -58,9 +57,7 @@ var User = sequelize.define('user', {
         }
     }
 });
-// User.sync({force: true}).then(function () {
-//
-// });
+// User.sync({force: true});
 
 
 module.exports = User;

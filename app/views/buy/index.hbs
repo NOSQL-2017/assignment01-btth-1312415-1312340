@@ -1,14 +1,11 @@
-<h1>All your book</h1>
+<h1>Buy a book</h1>
 <div class="col-md-12">
     <a href="/book/upload" class="btn btn-success">Upload a book for sell</a>
 </div>
 <div>
-    <h2>
-        All the book you are selling
-    </h2>
     {{#each books}}
         <div class="col-md-4 book-block">
-            <a class="book-panel-link" href="/book/{{this.id}}">
+            <a class="book-panel-link" href="/buy/{{this.id}}">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{this.name}}-{{this.price}}$</h3>

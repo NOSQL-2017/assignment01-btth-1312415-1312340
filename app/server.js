@@ -9,7 +9,8 @@ const UserModel = require('./models/User');
 const User = require('./routes/user');
 const Book = require('./routes/book');
 const DB = require('./modules/db');
-
+const Buy = require('./routes/buy');
+const Cart = require('./routes/cart');
 
 const app = express();
 app.use(session( {
@@ -61,7 +62,8 @@ app.get('/' , function(req, res){
 });
 app.use('/user', User);
 app.use('/book', Book);
-
+app.use('/buy', Buy);
+app.use('/cart', Cart);
 
 
 app.set('port', (process.env.PORT || 3000));

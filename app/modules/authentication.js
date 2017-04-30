@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Cart = require('../models/Cart');
 
 var authentication = function (req, res, next) {
     var session = req.session.user_id;
@@ -6,7 +7,21 @@ var authentication = function (req, res, next) {
         User.findById(req.session.user_id).then(function (user) {
             req.user = user;
             res.locals.session = user;
-            next();
+            user.getCarts({where: {checked: false}}).then(function (carts) {
+                if(carts.length === 0){
+                    Cart.create({}).then(function (cart) {
+                        user.addCart(cart);
+                        user.save();
+                        req.cart = cart;
+                        next();
+                    });
+                }else {
+                    req.cart = carts[0];
+                    next();
+                }
+
+            });
+
         }).catch(function (e) {
             res.send(e);
         })

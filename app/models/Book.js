@@ -1,7 +1,6 @@
 const sequelize = require('../modules/db');
 const SQ = require('sequelize');
-var User = require('./User');
-
+const User = require('./User');
 var Book = sequelize.define('book', {
     name: {
         type: SQ.STRING,
@@ -16,6 +15,33 @@ var Book = sequelize.define('book', {
             }
         }
     },
+    description:{
+        type: SQ.STRING,
+        allowNull: {
+            args: false,
+            msg: 'Must have a description'
+        },
+        validate: {
+            len: {
+                args: [1],
+                msg: 'Must have a description'
+            }
+        }
+    },
+    author: {
+        type: SQ.STRING,
+        allowNull: {
+            args: false,
+            msg: 'Must have a author'
+        }
+    },
+    publisher: {
+        type: SQ.STRING,
+        allowNull: {
+            args: false,
+            msg: 'Must have a publisher'
+        }
+    },
     url: {
         type: SQ.STRING,
         allowNull: {
@@ -28,9 +54,16 @@ var Book = sequelize.define('book', {
         allowNull: {
             args: false,
             msg: 'Must add a price'
+        },
+        validate: {
+            len: {
+                args: [1],
+                msg: 'Must have a price'
+            }
         }
     }
 });
 Book.belongsTo(User);
- // Book.sync({force: true});
+User.hasMany(Book, {foreignKey: 'userId'});
+// Book.sync({force: true});
 module.exports = Book;

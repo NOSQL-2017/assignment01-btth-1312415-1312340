@@ -1,0 +1,17 @@
+<h2>Cart</h2>
+{{#each books}}
+    <div class="col-md-4 book-block">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{this.name}}-{{this.price}}$</h3>
+            </div>
+            <div class="panel-body">
+                <p>description: {{this.description}}</p>
+            </div>
+        </div>
+    </div>
+
+{{/each}}
+<form method="post">
+    <input type="submit" class="btn btn-success" value="check">
+</form>

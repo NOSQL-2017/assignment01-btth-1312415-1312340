@@ -2,3 +2,10 @@
     height: 30px;
     width: 30px;
 }
+.book-block{
+    height: 150px;
+    overflow: hidden;
+}
+.panel-heading{
+    background-color: aqua;
+}

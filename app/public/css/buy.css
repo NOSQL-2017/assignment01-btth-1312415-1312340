@@ -1,0 +1,15 @@
+
+#main2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#area2 iframe {
+    border: none;
+}
+#area2 {
+    width: 1000px;
+    height: 500px;
+    margin: 5% auto;
+}

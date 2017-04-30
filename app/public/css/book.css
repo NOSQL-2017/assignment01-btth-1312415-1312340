@@ -5,10 +5,10 @@
     height: 100%;
 }
 #area {
-    width: 80%;
-    height: 80%;
+    width: 1000px;
+    height: 500px;
+
     margin: 5% auto;
-    max-width: 1250px;
 }
 #area iframe {
     border: none;
@@ -18,4 +18,7 @@
 }
 #next {
     right: 40px;
+}
+.book-panel-link:hover{
+    text-decoration: none;
 }

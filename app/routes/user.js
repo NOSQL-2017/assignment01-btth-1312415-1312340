@@ -20,11 +20,10 @@ router.get('/login', function (req, res) {
 router.post('/login',function (req, res) {
     var body = _.pick(req.body, ['email']);
     if (body) {
-        User.find(body).then(function (user) {
+        User.findOne({ where: body }).then(function (user) {
             var Hash = SaltAndHash.hash(user.salt, req.body.password);
             if (user.hash === Hash) {
                 req.session.user_id = user.id;
-                console.log(req.session.last_url);
                 if(req.session.last_url)
                 {
                     res.redirect(req.session.last_url);

@@ -15,6 +15,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type="text/css" href="/css/book.css">
+    <link rel="stylesheet" type="text/css" href="/css/buy.css">
     <script>
         $(function () {
             $('#bs-example-navbar-collapse-1 #{{page}}').addClass('active');
@@ -39,20 +40,23 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li id="index"><a href="/">Home</a></li>
-                    <li id="book"><a href="/book">Book</a></li>
+                    <li id="book"><a href="/book">Your book</a></li>
+                    <li id="buy"><a href="/buy">Buy book</a></li>
+                    <li id="cart"><a href="/cart">Cart</a></li>
                 </ul>
                 {{#if session }}
                     <ul class="nav navbar-nav navbar-right">
-                        <form id="form-logout" action="user/logout" method="post">
-                            <img src="{{session.avatar}}" class="small-avatar">
-                            <label
-                                    style="color: azure">{{session.name}}</label>
+                        <li>
+                            <form id="form-logout" action="/user/logout" method="post">
+                                <img src="{{session.avatar}}" class="small-avatar">
+                                <label
+                                        style="color: azure">{{session.name}}</label>
 
-                            <input id="logout" type="submit"
-                                   class="btn btn-primary"
-                                   value="Logout">
-                        </form>
-
+                                <input id="logout" type="submit"
+                                       class="btn btn-primary"
+                                       value="Logout">
+                            </form>
+                        </li>
                     </ul>
 
                 {{else}}
@@ -68,7 +72,7 @@
     </nav>
 
     <div>
-        <div class="md-col-8 offset-md-2">
+        <div class="col-md-10 col-md-offset-1 " >
             {{#each messages.info}}
                 <b>{{this}}</b> <br>
             {{/each}}
