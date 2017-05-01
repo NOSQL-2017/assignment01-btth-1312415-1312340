@@ -1,4 +1,4 @@
-const sequelize = require('../modules/db');
+const sequelize = require('../db/db');
 const SQ = require('sequelize');
 var User = sequelize.define('user', {
     email: {
@@ -57,7 +57,7 @@ var User = sequelize.define('user', {
         }
     }
 });
-// User.sync({force: true});
+User.sync();
 
 
 module.exports = User;

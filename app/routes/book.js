@@ -6,6 +6,8 @@ const multipartMiddleware = multipart();
 var path = require('path');
 var EPub = require("epub");
 
+const Category = require('../models/Category');
+const CategoryMap = require('../models/CategoryMap');
 const Book = require('../models/Book');
 const Authentication = require('../modules/authentication');
 
@@ -44,6 +46,8 @@ router.post('/upload', Authentication, multipartMiddleware, function (req, res) 
             book.publisher = epub.metadata.publisher;
             book.author = epub.metadata.creator;
             book.save().then(function () {
+                var category = new CategoryMap({book: book.id});
+                category.save();
                 req.flash('info', 'New book added');
                 res.redirect('/book');
             }).catch(function (e) {
@@ -63,17 +67,25 @@ router.post('/upload', Authentication, multipartMiddleware, function (req, res) 
 router.get('/:id', Authentication, function (req, res) {
     Book.findById(req.params.id).then(function (book) {
         book.getUser().then(function (user) {
-            if (user.id !== req.user.id) {
-                res.redirect('/book/');
-                return;
-            }
+            Category.find({}).then(function (categories) {
+                CategoryMap.findOne({book: req.params.id}).populate('category').then(function (categoryMap) {
+                    if (user.id !== req.user.id) {
+                        res.redirect('/book/');
+                        return;
+                    }
+                    var URI = '.' + book.url.slice(8, book.url.length);
+                    res.render('book/show', {
+                        page: "book",
+                        book: book,
+                        uri: URI,
+                        check: (req.user.id === book.userId),
+                        categories: categories,
+                        bookCategories: categoryMap.category
+                    });
+                })
 
-            var URI = '.' + book.url.slice(8, book.url.length);
-            res.render('book/show', {
-                page: "book",
-                book: book,
-                uri: URI
-            });
+            })
+
         });
 
 

@@ -42,7 +42,7 @@ router.post('/:id', Authentication, function (req, res) {
                 bookIds.push(cartItem.bookId)
             })
         });
-        if (bookIds.includes(req.params.id)) {
+        if (bookIds.includes(parseInt(req.params.id))) {
             req.flash('info', 'you already bought this book');
             res.redirect(req.originalUrl);
             return;

@@ -5,8 +5,11 @@ services:
     build: ./app/
     links:
       - db
+      - db2
+      - db3
     environment:
       - DATABASE_URL=postgres://user:123456@db:5432/user
+      - DATABASE2_URL=mongodb://db2:27017/bookApp
     ports:
       - "3000:3000"
     volumes:
@@ -20,3 +23,13 @@ services:
     environment:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=123456
+  db2:
+    container_name: db2
+    ports:
+      - "27017:27017"
+    image: mongo
+  db3:
+      container_name: db3
+      ports:
+        - "6379:6379"
+      image: mongo

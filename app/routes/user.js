@@ -50,6 +50,11 @@ router.post('/logout',function (req, res) {
     res.redirect('/');
 });
 router.post('/register', multipartMiddleware, function (req, res) {
+    if(!req.files.avatar.path){
+        req.flash('info', 'Need an avatar');
+        res.redirect('/user/register');
+        return;
+    }
     cloudinary.uploader.upload(req.files.avatar.path, function(result) {
         fs.unlinkSync(req.files.avatar.path);
         var salt = SaltAndHash.salt();
@@ -67,10 +72,7 @@ router.post('/register', multipartMiddleware, function (req, res) {
             req.session.user_id = user.id;
             res.redirect('/');
         }).catch(function (e) {
-            for(var i = 0; i < e.errors.length; i++)
-            {
-                req.flash('info', e.errors[i].message);
-            }
+            console.log(e);
 
             res.redirect('/user/register');
         })

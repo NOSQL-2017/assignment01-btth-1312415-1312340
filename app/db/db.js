@@ -16,7 +16,7 @@ if(process.env.DATABASE_URL){
 sequelize
     .authenticate()
     .then(function(err) {
-        console.log('Connection has been established successfully.');
+        console.log('connected to database 1');
     })
     .catch(function (err) {
         console.log('Unable to connect to the database:', err);

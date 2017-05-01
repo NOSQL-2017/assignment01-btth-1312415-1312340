@@ -8,9 +8,11 @@ const flash = require('express-flash');
 const UserModel = require('./models/User');
 const User = require('./routes/user');
 const Book = require('./routes/book');
-const DB = require('./modules/db');
+const DB = require('./db/db');
+const DB2 = require('./db/db2');
 const Buy = require('./routes/buy');
 const Cart = require('./routes/cart');
+const Category = require('./routes/category');
 
 const app = express();
 app.use(session( {
@@ -64,7 +66,7 @@ app.use('/user', User);
 app.use('/book', Book);
 app.use('/buy', Buy);
 app.use('/cart', Cart);
-
+app.use('/category', Category);
 
 app.set('port', (process.env.PORT || 3000));
 

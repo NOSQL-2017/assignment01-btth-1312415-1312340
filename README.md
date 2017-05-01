@@ -29,16 +29,16 @@ Công nghệ sử dụng (tự động thêm nếu phần mình dùng không đ�
 
 Yêu cầu **bắt buộc**
 * [x] Triển khai ứng dụng sử dụng docker compose và Dockerfile
-* [ ] Người dùng được phép đăng nhập để tiến hành mua sách
-* [ ] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
-* [ ] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm
+* [x] Người dùng được phép đăng nhập để tiến hành mua sách
+* [x] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
+* [x] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm
 * [ ] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
 * [ ] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
 
 Yêu cầu **không bắt buộc**
-* [ ] Người dùng được phép sử dụng giỏ hàng
+* [x] Người dùng được phép sử dụng giỏ hàng
 * [ ] Quản lý session trong 1 CSDL riêng bằng redis
-* [ ] Quản lý danh mục sản phẩm trong 1 CSDL riêng bằng MongoDB
+* [x] Quản lý danh mục sản phẩm trong 1 CSDL riêng bằng MongoDB
 * [ ] Quản lý giỏ hàng trong 1 CSDL riêng bằng Cassandra
 * [ ] Quản lý người mua và người bán follow, gửi tin nhắn với nhau và lưu trong CSDL riêng bằng Neo4j
 

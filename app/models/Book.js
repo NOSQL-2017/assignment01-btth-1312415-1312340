@@ -1,4 +1,4 @@
-const sequelize = require('../modules/db');
+const sequelize = require('../db/db');
 const SQ = require('sequelize');
 const User = require('./User');
 var Book = sequelize.define('book', {
@@ -65,5 +65,5 @@ var Book = sequelize.define('book', {
 });
 Book.belongsTo(User);
 User.hasMany(Book, {foreignKey: 'userId'});
-// Book.sync({force: true});
+Book.sync();
 module.exports = Book;

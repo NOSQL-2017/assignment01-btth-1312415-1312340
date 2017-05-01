@@ -1,0 +1,15 @@
+<h2>Add catagory</h2>
+<form method="post">
+    Name: <input type="text" name="name">
+    <input type="submit" class="btn btn-success" value="Add">
+</form>
+{{#each categories}}
+    <div class="col-md-4 ">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{this.name}}</h3>
+            </div>
+        </div>
+    </div>
+
+{{/each}}

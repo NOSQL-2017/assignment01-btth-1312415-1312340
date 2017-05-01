@@ -43,6 +43,9 @@
                     <li id="book"><a href="/book">Your book</a></li>
                     <li id="buy"><a href="/buy">Buy book</a></li>
                     <li id="cart"><a href="/cart">Cart</a></li>
+                    {{#if session.admin}}
+                        <li id="category"><a href="/category">Category</a></li>
+                    {{/if}}
                 </ul>
                 {{#if session }}
                     <ul class="nav navbar-nav navbar-right">
