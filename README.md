@@ -37,7 +37,7 @@ Yêu cầu **bắt buộc**
 
 Yêu cầu **không bắt buộc**
 * [x] Người dùng được phép sử dụng giỏ hàng
-* [ ] Quản lý session trong 1 CSDL riêng bằng redis
+* [x] Quản lý session trong 1 CSDL riêng bằng redis
 * [x] Quản lý danh mục sản phẩm trong 1 CSDL riêng bằng MongoDB
 * [ ] Quản lý giỏ hàng trong 1 CSDL riêng bằng Cassandra
 * [ ] Quản lý người mua và người bán follow, gửi tin nhắn với nhau và lưu trong CSDL riêng bằng Neo4j

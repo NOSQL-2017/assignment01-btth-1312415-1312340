@@ -75,6 +75,7 @@ router.get('/:id', Authentication, function (req, res) {
                     }
                     var URI = '.' + book.url.slice(8, book.url.length);
                     res.render('book/show', {
+                        user: user,
                         page: "book",
                         book: book,
                         uri: URI,

@@ -2,6 +2,12 @@
     <h2>Title:{{book.name}} </h2>
     <h3>Author:{{book.author}}</h3>
     <h3>Publisher:{{book.publisher}}</h3>
+    <div>
+        <form action="/follow/book/{{user.id}}" method="post">
+            <input type="hidden" name="book" value="{{book.id}}">
+            <h4>by: {{user.name}} <input type="submit" class="btn btn-success" value="follow"> </h4>
+        </form>
+    </div>
     <h4>Catagories:</h4>
     {{#each bookCategories}}
         <button disabled="disabled" class="btn btn-success">{{this.name}}</button>

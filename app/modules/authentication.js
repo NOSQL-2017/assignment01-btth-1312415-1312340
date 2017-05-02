@@ -2,9 +2,10 @@ const User = require('../models/User');
 const Cart = require('../models/Cart');
 
 var authentication = function (req, res, next) {
-    var session = req.session.user_id;
+    var session = req.session.key;
+    console.log(req.session.key);
     if(session){
-        User.findById(req.session.user_id).then(function (user) {
+        User.findById(req.session.key).then(function (user) {
             req.user = user;
             res.locals.session = user;
             user.getCarts({where: {checked: false}}).then(function (carts) {
@@ -28,7 +29,6 @@ var authentication = function (req, res, next) {
     }
     else{
         req.flash('info', 'need to login');
-        req.session.last_url = req.originalUrl;
         res.redirect('/user/login');
     }
 };

@@ -2,18 +2,21 @@
     <h2>Title:{{book.name}} </h2>
     <h3>Author:{{book.author}}</h3>
     <h3>Publisher:{{book.publisher}}</h3>
-    <div class="col-md-2">
-        <h4>by: {{user.name}} </h4>
+    <div>
+        <form action="/follow/buy/{{user.id}}" method="post">
+            <input type="hidden" name="book" value="{{book.id}}">
+            <h4>by: {{user.name}} <input type="submit" class="btn btn-success" value="follow"> </h4>
+        </form>
     </div>
     <div class="col-md-4 ">
         <form method="post">
-            price:{{book.price}}
+            price:{{book.price}} $
+            Quantity: <input type="number" name="quantity" >
             <input name="userId" type="hidden" value="{{session.id}}">
             <button type="submit" class="btn btn-success">Add to Cart</button>
-
         </form>
     </div>
-    <br> <br>
+    <br> <br> <br>
     <div id="main2">
         <div id="area2"></div>
     </div>

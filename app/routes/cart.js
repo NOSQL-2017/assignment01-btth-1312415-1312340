@@ -4,12 +4,18 @@ const Authentication = require('../modules/authentication');
 
 
 router.get('/', Authentication, function (req, res) {
-    var books = [];
+    var items = [];
     req.cart.getCartItems().then(function (cartItems) {
         var TotalPromise = cartItems.map(function (cartItem) {
             return (new Promise(function (resolve, reject) {
                 cartItem.getBook().then(function (book) {
-                    books.push(book);
+                    var item = {
+                        quantity: cartItem.quantity,
+                        name: book.name,
+                        price: book.price,
+                        description: book.description
+                    };
+                    items.push(item);
                     resolve();
                 }).catch(function (e) {
                     reject()
@@ -19,7 +25,7 @@ router.get('/', Authentication, function (req, res) {
         Promise.all(TotalPromise).then(function () {
             res.render('cart', {
                 page: 'cart',
-                books: books
+                books: items
             });
         }).catch(function (e) {
             console.log(e);

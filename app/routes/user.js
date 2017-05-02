@@ -8,28 +8,21 @@ const User = require('../models/User');
 const cloudinary = require('../modules/cloudinary');
 
 const multipartMiddleware = multipart();
-
-
 const router = express.Router();
 
 router.get('/login', function (req, res) {
-   res.render('user/login',{
-       page: 'login'
-   })
+    res.render('user/login', {
+        page: 'login'
+    })
 });
-router.post('/login',function (req, res) {
+router.post('/login', function (req, res) {
     var body = _.pick(req.body, ['email']);
     if (body) {
-        User.findOne({ where: body }).then(function (user) {
+        User.findOne({where: body}).then(function (user) {
             var Hash = SaltAndHash.hash(user.salt, req.body.password);
             if (user.hash === Hash) {
-                req.session.user_id = user.id;
-                if(req.session.last_url)
-                {
-                    res.redirect(req.session.last_url);
-                }else{
-                    res.redirect('/');
-                }
+                req.session.key = user.id;
+                res.redirect('/');
             } else {
                 req.flash('info', 'wrong email or password');
                 res.redirect('/user/login');
@@ -41,27 +34,27 @@ router.post('/login',function (req, res) {
     }
 });
 router.get('/register', function (req, res) {
-    res.render('user/register',{
+    res.render('user/register', {
         page: 'user'
     })
 });
-router.post('/logout',function (req, res) {
-    req.session.user_id = null;
+router.post('/logout', function (req, res) {
+    req.session.key = null;
     res.redirect('/');
 });
 router.post('/register', multipartMiddleware, function (req, res) {
-    if(!req.files.avatar.path){
+    if (!req.files.avatar.path) {
         req.flash('info', 'Need an avatar');
         res.redirect('/user/register');
         return;
     }
-    cloudinary.uploader.upload(req.files.avatar.path, function(result) {
+    cloudinary.uploader.upload(req.files.avatar.path, function (result) {
         fs.unlinkSync(req.files.avatar.path);
         var salt = SaltAndHash.salt();
         var hash = SaltAndHash.hash(salt, req.body.password);
         var body = _.pick(req.body, ['name', 'email']);
         var user = User.build(body);
-        if(result){
+        if (result) {
             user.avatar = result.url;
         }
         user.hash = hash;
@@ -69,10 +62,12 @@ router.post('/register', multipartMiddleware, function (req, res) {
         user.validate();
         user.save().then(function () {
             req.flash('info', 'New user added');
-            req.session.user_id = user.id;
+            req.session.key = user.id;
             res.redirect('/');
         }).catch(function (e) {
-            console.log(e);
+            for (var i = 0; i < e.errors.length; i++) {
+                req.flash('info', e.errors[i].message);
+            }
 
             res.redirect('/user/register');
         })

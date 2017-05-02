@@ -7,9 +7,11 @@ services:
       - db
       - db2
       - db3
+      - db4
     environment:
       - DATABASE_URL=postgres://user:123456@db:5432/user
       - DATABASE2_URL=mongodb://db2:27017/bookApp
+      - DATABASE3_HOST=db3
     ports:
       - "3000:3000"
     volumes:
@@ -29,7 +31,14 @@ services:
       - "27017:27017"
     image: mongo
   db3:
-      container_name: db3
-      ports:
-        - "6379:6379"
-      image: mongo
+    container_name: db3
+    ports:
+      - "6379:6379"
+    image: redis
+  db4:
+    container_name: db4
+    ports:
+        - "7474:7474"
+    image: neo4j
+    environment:
+      - NEO4J_AUTH=none

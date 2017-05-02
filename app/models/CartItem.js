@@ -3,7 +3,9 @@ const sequelize = require('../db/db');
 const SQ = require('sequelize');
 const Cart = require('./Cart');
 var CartItem = sequelize.define('cartItem', {
-
+    quantity:{
+        type: SQ.INTEGER
+    }
 });
 CartItem.belongsTo(Cart);
 Cart.hasMany(CartItem,{foreignKey: 'cartId'});

@@ -3,9 +3,9 @@
     <a href="/book/upload" class="btn btn-success">Upload a book for sell</a>
 </div>
 <div>
-    <h2>
+    <h3>
         All the book you are selling
-    </h2>
+    </h3>
     {{#each books}}
         <div class="col-md-4 book-block">
             <a class="book-panel-link" href="/book/{{this.id}}">
@@ -21,4 +21,5 @@
         </div>
 
     {{/each}}
+
 </div>

@@ -35,33 +35,22 @@ router.get('/:id', Authentication, function (req, res) {
 });
 router.post('/:id', Authentication, function (req, res) {
     var cart = req.cart;
-    var bookIds = [];
-    Cart.findAll({where: {userId: req.user.id, checked: true}, include: [{model: CartItem}]}).then(function (carts) {
-        carts.forEach(function (cart) {
-            cart.cartItems.forEach(function (cartItem) {
-                bookIds.push(cartItem.bookId)
-            })
-        });
-        if (bookIds.includes(parseInt(req.params.id))) {
-            req.flash('info', 'you already bought this book');
+    CartItem.findOne({where: {cartId: cart.id, bookId: req.params.id}}).then(function (cartItem) {
+        if (cartItem) {
+            cartItem.quantity += parseInt(req.body.quantity);
+            cartItem.save();
+            req.flash('info', 'Updated cart ');
             res.redirect(req.originalUrl);
             return;
         }
-        CartItem.findOne({where: {cartId: cart.id, bookId: req.params.id}}).then(function (cartItem) {
-            if (cartItem) {
-                req.flash('info', 'Book is already in your cart');
+        CartItem.create({bookId: req.params.id, quantity: req.body.quantity}).then(function (cartItem) {
+            cart.addCartItem(cartItem);
+            cart.save().then(function () {
+                req.flash('info', 'New book added to cart');
                 res.redirect(req.originalUrl);
-                return;
-            }
-            CartItem.create({bookId: req.params.id}).then(function (cartItem) {
-                cart.addCartItem(cartItem);
-                cart.save().then(function () {
-                    req.flash('info', 'New book added to cart');
-                    res.redirect(req.originalUrl);
-                });
-            })
+            });
         })
-    });
+    })
 
 });
 
