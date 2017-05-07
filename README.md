@@ -3,7 +3,7 @@
 **Bookstore** là một repository trong bài tập thực hành của lớp.
 
 Thành viên:
-* [ ] **1312415** Trần Thanh Phán (tên tài khoản github)
+* [ ] **1312415** Trần Thanh Phán (1312415@github.com)
 * [ ] **MSSV2** Tên sinh viên 2 (tên tài khoản github)
 
 URL: **Link github page**
