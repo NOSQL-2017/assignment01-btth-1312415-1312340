@@ -22,25 +22,25 @@ Công nghệ sử dụng (tự động thêm nếu phần mình dùng không đ�
 * [x] Nodejs
 * [ ] Ruby on Rails
 * [x] Postgresql
-* [ ] Mongodb
-* [ ] Redis
+* [x] Mongodb
+* [x] Redis
 * [ ] Cassandra
-* [ ] Neo4j
+* [x] Neo4j
 
 Yêu cầu **bắt buộc**
 * [x] Triển khai ứng dụng sử dụng docker compose và Dockerfile
 * [x] Người dùng được phép đăng nhập để tiến hành mua sách
 * [x] Người bán được phép đăng nhập vào hệ thống để quản lý sách mình muốn bán
 * [x] Nhân viên hệ thống được phép đăng nhập để quản lý danh mục sản phẩm
-* [ ] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
-* [ ] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
+* [x] Người dùng được phép xem lại các đơn hàng đã mua và trạng thái đơn hàng
+* [x] Người bán được phép xem các đơn hàng đã đặt và cập nhật trạng thái đơn hàng (đã nhập, đã giao)
 
 Yêu cầu **không bắt buộc**
 * [x] Người dùng được phép sử dụng giỏ hàng
 * [x] Quản lý session trong 1 CSDL riêng bằng redis
 * [x] Quản lý danh mục sản phẩm trong 1 CSDL riêng bằng MongoDB
 * [ ] Quản lý giỏ hàng trong 1 CSDL riêng bằng Cassandra
-* [ ] Quản lý người mua và người bán follow, gửi tin nhắn với nhau và lưu trong CSDL riêng bằng Neo4j
+* [x] Quản lý người mua và người bán follow, gửi tin nhắn với nhau và lưu trong CSDL riêng bằng Neo4j
 
 Các **chức năng của demo** đã thực hiện hoặc dự kiến thực hiện. Nhóm check vào các chức năng đã làm
 * [ ] Chức năng 1
