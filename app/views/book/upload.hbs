@@ -1,6 +1,13 @@
 <form class="form-horizontal col-xs-6 col-md-offset-3" method="post" enctype="multipart/form-data" >
     <h2 class = "col-md-offset-3">upload and sell a book</h2>
     <div class="form-group">
+        <label for="inputName" class="control-label col-xs-2">Title</label>
+        <div class="col-xs-8">
+            <input name="name" type="text" class="form-control" id="inputName"  >
+
+        </div>
+    </div>
+    <div class="form-group">
         <label for="inputDescription" class="control-label col-xs-2">Description</label>
         <div class="col-xs-8">
             <input name="description" type="text" class="form-control" id="inputDescription" >
@@ -13,10 +20,22 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputBook" class="control-label col-xs-2">Book</label>
+        <label for="inputBook" class="control-label col-xs-2">Cover</label>
         <div class="col-xs-8">
-            <input name="book" type="file" class="form-control" id="inputBook" accept=".epub" >
-            (only epub)
+            <input name="book" type="file" class="form-control" id="inputBook" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputPublisher" class="control-label col-xs-2">Publisher</label>
+        <div class="col-xs-8">
+            <input name="publisher" type="text" class="form-control" id="inputPublisher"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAuthor" class="control-label col-xs-2">Author</label>
+        <div class="col-xs-8">
+            <input name="author" type="text" class="form-control" id="inputAuthor"  >
         </div>
     </div>
     <input name="userId" type="hidden" class="form-control" id="userID" value="{{session.id}}" >

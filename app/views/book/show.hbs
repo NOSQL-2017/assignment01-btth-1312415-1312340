@@ -25,16 +25,6 @@
         </form>
     {{/if}}
     <br>
-    <div id="main">
-        <div id="prev" onclick="Book.prevPage();" class="btn btn-warning">PREVIOUS</div>
-        <div id="next" onclick="Book.nextPage();" class="btn btn-success">NEXT</div>
-        <div id="area"></div>
-
-    </div>
-    <script src="/js/zip.min.js"></script>
-    <script src="/js/epub.js"></script>
-    <script>
-        var Book = ePub(".{{uri}}");
-        Book.renderTo("area");
-    </script>
+    <img src="{{book.url}}" height="350" max-width="100%">
+    <br><br><br>
 </div>

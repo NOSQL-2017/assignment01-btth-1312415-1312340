@@ -4,11 +4,9 @@ const multipart = require('connect-multiparty');
 const fs = require('fs-extra');
 var path = require('path');
 
-const CartItem = require('../models/CartItem');
-const Cart = require('../models/Cart');
+const CartItem = require('../modules/relation').CartItem;
 const router = express.Router();
-const multipartMiddleware = multipart();
-const Book = require('../models/Book');
+const Book = require('../modules/relation').Book;
 const Authentication = require('../modules/authentication');
 
 router.get('/', Authentication, function (req, res) {
@@ -43,13 +41,21 @@ router.post('/:id', Authentication, function (req, res) {
             res.redirect(req.originalUrl);
             return;
         }
-        CartItem.create({bookId: req.params.id, quantity: req.body.quantity}).then(function (cartItem) {
-            cart.addCartItem(cartItem);
-            cart.save().then(function () {
-                req.flash('info', 'New book added to cart');
-                res.redirect(req.originalUrl);
-            });
-        })
+        Book.findById(req.params.id).then(function (book) {
+           if(book.userId === req.user.id){
+               req.flash('info', 'Can not buy your own book');
+               res.redirect(req.originalUrl);
+               return;
+           }
+            CartItem.create({bookId: req.params.id, quantity: req.body.quantity}).then(function (cartItem) {
+                cart.addCartItem(cartItem);
+                cart.save().then(function () {
+                    req.flash('info', 'New book added to cart');
+                    res.redirect(req.originalUrl);
+                });
+            })
+        });
+
     })
 
 });

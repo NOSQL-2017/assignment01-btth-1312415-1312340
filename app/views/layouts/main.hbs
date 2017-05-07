@@ -44,6 +44,10 @@
                     <li id="buy"><a href="/buy">Buy book</a></li>
                     <li id="cart"><a href="/cart">Cart</a></li>
                     <li id="follow"><a href="/follow">Follow</a></li>
+                    <li id="message"><a href="/message">Message</a></li>
+                    <li id="order"><a href="/order">Order</a></li>
+                    <li id="orderStatus"><a href="/orderstatus">Order status</a></li>
+
                     {{#if session.admin}}
                         <li id="category"><a href="/category">Category</a></li>
                     {{/if}}
@@ -76,12 +80,14 @@
     </nav>
 
     <div>
-        <div class="col-md-10 col-md-offset-1 " >
+        <div class="col-md-10 col-md-offset-1 ">
+
             {{#each messages.info}}
                 <b>{{this}}</b> <br>
             {{/each}}
             <br>
             {{{body}}}
+
         </div>
     </div>
     <script src="/js/main.js"></script>

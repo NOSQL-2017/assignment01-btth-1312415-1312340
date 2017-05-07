@@ -16,6 +16,10 @@ const Buy = require('./routes/buy');
 const Cart = require('./routes/cart');
 const Category = require('./routes/category');
 const Follow = require('./routes/follow');
+const Message = require('./routes/message');
+const Relation = require('./modules/relation');
+const Order = require('./routes/order');
+const OrderStatus = require('./routes/orderStatus');
 
 var client  = redis.createClient(6379, process.env.DATABASE3_HOST || "localhost");
 const app = express();
@@ -52,6 +56,7 @@ app.get('/' , function(req, res){
 
         }).catch(function (e) {
             res.locals = null;
+            console.log(e);
             res.render('index',{
                 page: 'index'
             });
@@ -71,6 +76,9 @@ app.use('/buy', Buy);
 app.use('/cart', Cart);
 app.use('/category', Category);
 app.use('/follow', Follow);
+app.use('/message', Message);
+app.use('/order', Order);
+app.use('/orderstatus', OrderStatus);
 
 app.set('port', (process.env.PORT || 3000));
 

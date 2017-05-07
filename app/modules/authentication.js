@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const Cart = require('../models/Cart');
+const User = require('../modules/relation').User;
+const Cart = require('../modules/relation').Cart;
 
 var authentication = function (req, res, next) {
     var session = req.session.key;

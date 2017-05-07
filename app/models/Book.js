@@ -1,6 +1,5 @@
 const sequelize = require('../db/db');
 const SQ = require('sequelize');
-const User = require('./User');
 var Book = sequelize.define('book', {
     name: {
         type: SQ.STRING,
@@ -63,7 +62,6 @@ var Book = sequelize.define('book', {
         }
     }
 });
-Book.belongsTo(User);
-User.hasMany(Book, {foreignKey: 'userId'});
-Book.sync();
+
+
 module.exports = Book;

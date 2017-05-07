@@ -5,10 +5,15 @@ const Cart = require('./Cart');
 var CartItem = sequelize.define('cartItem', {
     quantity:{
         type: SQ.INTEGER
+    },
+    status:{
+        type: SQ.STRING,
+        defaultValue: 'checked',
+        validation:{
+            isIn: ['checked', 'shipping', 'completed'],
+        }
     }
 });
-CartItem.belongsTo(Cart);
-Cart.hasMany(CartItem,{foreignKey: 'cartId'});
-CartItem.belongsTo(Book);
-CartItem.sync();
+
+
 module.exports = CartItem;

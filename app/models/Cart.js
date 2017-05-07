@@ -8,7 +8,8 @@ var Cart = sequelize.define('cart', {
         defaultValue: false
     }
 });
-Cart.belongsTo(User);
-User.hasMany(Cart, {foreignKey: 'userId'});
-Cart.sync();
+
+
+
+
 module.exports = Cart;

@@ -1,0 +1,21 @@
+<a class="btn btn-success col-md-12" href="/message/new">
+    add a new message
+</a>
+<br>
+All message received:
+{{#each messages}}
+    <div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{this.title}} by <b>{{this.name}}</b> </h3>
+                </div>
+                <div class="panel-body">
+                    <p>content: {{this.text}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{{/each}}

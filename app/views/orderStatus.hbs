@@ -1,0 +1,24 @@
+{{#each cartItems}}
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><b>{{this.book.name}}</b> AT {{this.createdAt}} </h3>
+            </div>
+            <div class="panel-body">
+                Quantity: {{this.quantity}} <br>
+                <form method="post">
+                    <select name="status" >
+                        <option selected disabled>{{this.status}}</option>
+                        <option value="checked">checked</option>
+                        <option value="shipping">shipping</option>
+                        <option value="completed">completed</option>
+                    </select>
+                    <input type="hidden" value="{{this.id}}" name="id">
+                    <input type="submit" class="btn btn-success" value="Change status">
+                </form>
+                <br>
+
+            </div>
+        </div>
+    </div>
+{{/each}}

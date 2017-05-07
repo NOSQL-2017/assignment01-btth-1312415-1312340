@@ -4,7 +4,7 @@ const multipart = require('connect-multiparty');
 const fs = require('fs');
 
 const SaltAndHash = require('../modules/password');
-const User = require('../models/User');
+const User = require('../modules/relation').User;
 const cloudinary = require('../modules/cloudinary');
 
 const multipartMiddleware = multipart();

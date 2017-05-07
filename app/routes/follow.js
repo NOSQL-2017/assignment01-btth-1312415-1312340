@@ -1,8 +1,7 @@
 const express = require('express');
 const _ = require('lodash');
 const Follow = require('../models/Follow');
-const Book = require('../models/Book');
-const User = require('../models/User');
+const User = require('../modules/relation').User;
 const Authentication = require('../modules/authentication');
 
 const router = express.Router();

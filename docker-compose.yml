@@ -1,22 +1,23 @@
 version: '2'
 services:
-  api:
-    container_name: app
-    build: ./app/
-    links:
-      - db
-      - db2
-      - db3
-      - db4
-    environment:
-      - DATABASE_URL=postgres://user:123456@db:5432/user
-      - DATABASE2_URL=mongodb://db2:27017/bookApp
-      - DATABASE3_HOST=db3
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./app:/web
-    command: bash -c "npm install && npm start"
+  app:
+      container_name: app
+      build: ./app/
+      links:
+        - db
+        - db2
+        - db3
+        - db4
+      environment:
+        - DATABASE_URL=postgres://user:123456@db:5432/user
+        - DATABASE2_URL=mongodb://db2:27017/bookApp
+        - DATABASE3_HOST=db3
+        - DATABASE4_HOST=db4
+      ports:
+        - "3000:3000"
+      volumes:
+        - ./app:/webapp
+      command: bash -c "npm install && npm start"
   db:
     container_name: db
     ports:

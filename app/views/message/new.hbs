@@ -1,0 +1,28 @@
+<form class="form-horizontal col-xs-6 col-md-offset-3" method="post"  >
+    <h2 class = "col-md-offset-1">SEND A MESSAGE</h2>
+    <div class="form-group">
+        <label for="inputTitle" class="control-label col-xs-2">To Email</label>
+        <div class="col-xs-8">
+            <input name="email" type="text" class="form-control" id="inputTitle" placeholder="email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputText" class="control-label col-xs-2">Title</label>
+        <div class="col-xs-8">
+            <input name="title" type="text" class="form-control" id="inputText" placeholder="Your title here">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputText" class="control-label col-xs-2">Message</label>
+        <div class="col-xs-8">
+            <input name="text" type="text" class="form-control" id="inputText" placeholder="Your message here">
+        </div>
+    </div>
+    <input type="hidden" name="userId" value="{{session.id}}">
+    <div class="form-group">
+        <div class="col-xs-offset-4 col-xs-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a class="btn btn-success" href="/">Back</a>
+        </div>
+    </div>
+</form>
